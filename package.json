@@ -1,7 +1,4 @@
 {
-  "devDependencies": {
-    "tailwind": "^4.0.0"
-  },
   "name": "rest-countries-api",
   "description": "![Design preview for the REST Countries API with color theme switcher coding challenge](./design/desktop-preview.jpg)",
   "version": "1.0.0",
@@ -170,11 +167,11 @@
     "stack-trace": "^0.0.10",
     "statuses": "^1.4.0",
     "stethoskop": "^1.0.0",
+    "string_decoder": "^0.10.31",
     "string.prototype.trim": "^1.2.7",
     "string.prototype.trimend": "^1.0.6",
     "string.prototype.trimstart": "^1.0.6",
     "stringify-object": "^3.3.0",
-    "string_decoder": "^0.10.31",
     "supports-color": "^5.5.0",
     "timer2": "^1.0.0",
     "tsscmp": "^1.0.6",
@@ -202,5 +199,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
 }
