@@ -434,6 +434,10 @@ video {
   display: none;
 }
 
+html {
+  font-family: "Nunito Sans", sans-serif;
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
