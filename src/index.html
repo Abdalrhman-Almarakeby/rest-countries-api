@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -16,24 +16,29 @@
       href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,600;6..12,800&display=swap"
       rel="stylesheet" />
 
+    <!-- Scrips -->
+    <script src="./JS/main.js" defer></script>
+
     <!-- CSS -->
     <link rel="stylesheet" href="../public/main.css" />
 
     <title>Where In The World</title>
   </head>
   <body>
-    <header class="bg-white text-veryDarkBlue dark:bg-blue  dark:text-white shadow-md">
+    <header
+      class="bg-white text-veryDarkBlue dark:bg-blue  dark:text-white shadow-md">
       <div class="container p-4 lg:p-6 flex justify-between items-center">
         <p class="font-extrabold sm:text-sm md:text-lg lg:text-xl xl:text-2xl ">
           Where in the world?
         </p>
         <button
+          id="dark-mode-btn"
           class="flex items-center gap-1 md:gap-3 outline-none text-xs md:text-sm">
           <!-- src="../public/icons/moon.svg" -->
           <img
             src="../public/icons/moon-outline.svg"
             alt="Moon icon"
-            class=" w-3 md:w-4" />
+            class="w-3 md:w-4" />
           <span>Dark Mode</span>
         </button>
       </div>
