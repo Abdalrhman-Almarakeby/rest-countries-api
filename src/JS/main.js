@@ -14,9 +14,9 @@ function toggleDarkMode() {
 function changeIconSrc() {
   const icon = darkModeBtn.querySelector("img");
   if (page.classList.contains("dark")) {
-    icon.src = "../public/icons/moon.svg";
+    icon.src = "./public/icons/moon.svg";
   } else {
-    icon.src = "../public/icons/moon-outline.svg";
+    icon.src = "./public/icons/moon-outline.svg";
   }
 }
 
