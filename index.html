@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" >
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Favicon -->
     <link
       rel="shortcut icon"
-      href="../public/favicon.ico"
+      href="./public/favicon.ico"
       type="image/x-icon" />
 
     <!-- Google fonts -->
@@ -17,17 +17,17 @@
       rel="stylesheet" />
 
     <!-- Scrips -->
-    <script src="./JS/main.js" defer></script>
+    <script src="./src/JS/main.js" defer></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../public/main.css" />
+    <link rel="stylesheet" href="./public/main.css" />
 
     <title>Where In The World</title>
   </head>
   <body>
     <header
       class="bg-white text-veryDarkBlue dark:bg-blue dark:text-white shadow-md z-50">
-      <div class="container p-4 lg:p-6 flex justify-between items-center">
+      <div class="container px-6 py-7 flex justify-between items-center">
         <p class="font-extrabold sm:text-sm md:text-lg lg:text-xl xl:text-2xl ">
           Where in the world?
         </p>
@@ -36,7 +36,7 @@
           class="flex items-center gap-1 md:gap-3 outline-none text-xs md:text-sm">
           <!-- src="../public/icons/moon.svg" -->
           <img
-            src="../public/icons/moon-outline.svg"
+            src="./public/icons/moon-outline.svg"
             alt="Moon icon"
             class="w-3 md:w-4" />
           <span>Dark Mode</span>
@@ -47,12 +47,13 @@
     <main
       class="bg-lightGray dark:bg-darkBlue  min-h-screen py-10 px-5 dark:text-white text-darkBlue">
       <div class="container">
-        <div class="flex  items-start  gap-8 flex-col md:flex-row md:items-center md:justify-between">
+        <!-------->
+        <div class="flex items-start gap-8 flex-col md:flex-row md:items-center md:justify-between">
           <div
             onclick="document.getElementById('search-input').focus()"
             class="focus-within:outline dark:text-white bg-white dark:bg-blue cursor-text duration-75 flex items-center justify-start rounded py-2 px-4 sm:py-4 w-96 sm:px-6 shadow-lg gap-2 max-w-full">
             <img
-              src="../public/icons/IcBaselineSearch.svg"
+              src="./public/icons/IcBaselineSearch.svg"
               alt="Search lens icon"
               class="text-darkGray w-5" />
             <input
@@ -73,6 +74,8 @@
             <option value="Oceania" class="font-semibold text-inherit">Oceania</option>
           </select>
         </div>
+        <!-------->
+        <div id="cards-container"></div>
       </div>
     </main>
   </body>
