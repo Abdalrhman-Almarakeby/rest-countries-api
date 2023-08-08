@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -26,7 +26,7 @@
   </head>
   <body>
     <header
-      class="bg-white text-veryDarkBlue dark:bg-blue  dark:text-white shadow-md">
+      class="bg-white text-veryDarkBlue dark:bg-blue dark:text-white shadow-md z-50">
       <div class="container p-4 lg:p-6 flex justify-between items-center">
         <p class="font-extrabold sm:text-sm md:text-lg lg:text-xl xl:text-2xl ">
           Where in the world?
@@ -43,6 +43,37 @@
         </button>
       </div>
     </header>
-    <main class=""></main>
+    <!---------------------------->
+    <main
+      class="bg-lightGray dark:bg-darkBlue  min-h-screen py-10 px-5 dark:text-white text-darkBlue">
+      <div class="container">
+        <div class="flex  items-start  gap-8 flex-col md:flex-row md:items-center md:justify-between">
+          <div
+            onclick="document.getElementById('search-input').focus()"
+            class="focus-within:outline dark:text-white bg-white dark:bg-blue cursor-text duration-75 flex items-center justify-start rounded py-2 px-4 sm:py-4 w-96 sm:px-6 shadow-lg gap-2 max-w-full">
+            <img
+              src="../public/icons/IcBaselineSearch.svg"
+              alt="Search lens icon"
+              class="text-darkGray w-5" />
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Search for a country..."
+              class="outline-none bg-inherit font-semibold grow max-w-full " />
+          </div>
+          <select
+            name="region-filter"
+            id="region-filter"
+            class="outline-none text-base bg-white dark:bg-blue  py-2 md:py-4 px-1 sm:px-2 shadow-none rounded font-semibold">
+            <option value="" class="font-semibold text-inherit">Filter by Region</option>
+            <option value="Africa" class="font-semibold text-inherit">Africa</option>
+            <option value="Americas" class="font-semibold text-inherit">Americas</option>
+            <option value="Asia" class="font-semibold text-inherit">Asia</option>
+            <option value="Europe" class="font-semibold text-inherit">Europe</option>
+            <option value="Oceania" class="font-semibold text-inherit">Oceania</option>
+          </select>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
