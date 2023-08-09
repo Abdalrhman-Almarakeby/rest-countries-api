@@ -37,49 +37,55 @@ window.addEventListener("load", () => {
 ///////////////////////////////////////////
 const cardsContainer = document.getElementById("cards-container")
 
-
 function createCountryCard(countryObject) {
-  // Get the country information from the object
-  const countryName = document.createTextNode(countryObject.name.common)
 
-  const div = document.createElement("div")
-  div.classList.add("card")
+  const { flags, name, population, region, capital } = countryObject
 
-  const img = document.createElement("img")
-  img.alt = countryObject.flags.alt
-  img.src = countryObject.flags.svg
+  const div = document.createElement("div");
+  div.classList.add("card");
+  div.title = name.common
 
-  const h3 = document.createElement("h3")
-  h3.appendChild(countryName)
 
-  const infoDiv = createInfoDiv(countryObject)
-  infoDiv.prepend(h3)
+  const img = document.createElement("img");
+  img.alt = flags.alt;
+  img.src = flags.svg;
 
-  div.appendChild(img)
-  div.appendChild(infoDiv)
+  const h3 = document.createElement("h3");
+  h3.textContent = name.common;
 
-  cardsContainer.appendChild(div)
-}
+  const infoDiv = document.createElement("div");
 
-function createInfoDiv(countryObject) {
-  const div = document.createElement("div")
-  const countryPopulation = document.createTextNode(countryObject.population)
-  const countryRegion = document.createTextNode(countryObject.region)
-  const countryCapital = document.createTextNode(countryObject.capital)
-  const arr = [document.createTextNode("Population: "), document.createTextNode("Region: "), document.createTextNode("Capital: ")]
-  const arr2 = [countryPopulation, countryRegion, countryCapital]
+  const populationText = document.createElement("p");
+  populationText.textContent = `Population: `;
 
-  for (let i = 0; i < arr.length; i++) {
+  const populationSpan = document.createElement("span");
+  populationSpan.textContent = population.toLocaleString();
 
-    const p = document.createElement("p")
-    p.appendChild(arr[i])
-    const span = document.createElement("span")
-    span.appendChild(arr2[i])
-    p.appendChild(span)
-    div.appendChild(p)
+  const regionText = document.createElement("p");
+  regionText.textContent = `Region: `;
 
-  }
-  return div
+  const regionSpan = document.createElement("span");
+  regionSpan.textContent = region;
+
+  const capitalText = document.createElement("p");
+  capitalText.textContent = `Capital: `;
+
+  const capitalSpan = document.createElement("span");
+  capitalSpan.textContent = capital;
+
+  populationText.appendChild(populationSpan);
+  regionText.appendChild(regionSpan);
+  capitalText.appendChild(capitalSpan);
+
+  infoDiv.appendChild(h3)
+
+  infoDiv.appendChild(populationText);
+  infoDiv.appendChild(regionText);
+  infoDiv.appendChild(capitalText);
+
+  div.appendChild(img);
+  div.appendChild(infoDiv);
+  cardsContainer.appendChild(div);
 }
 
 fetch("https://restcountries.com/v3.1/all")
