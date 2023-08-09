@@ -9,14 +9,24 @@ function toggleDarkMode() {
     page.classList.contains("dark") ? "dark" : "light"
   );
   changeIconSrc();
+  changeModeText();
 }
 
 function changeIconSrc() {
   const icon = darkModeBtn.querySelector("img");
   if (page.classList.contains("dark")) {
-    icon.src = "./public/icons/moon.svg";
+    icon.src = "./public/icons/sun.svg";
   } else {
-    icon.src = "./public/icons/moon-outline.svg";
+    icon.src = "./public/icons/moon.svg";
+  }
+}
+
+function changeModeText() {
+  const modeText = darkModeBtn.querySelector("span")
+  if (page.classList.contains("dark")) {
+    modeText.textContent = "Light Mode"
+  } else {
+  modeText.textContent = "Dark Mode"
   }
 }
 
@@ -28,4 +38,5 @@ window.addEventListener("load", () => {
     page.classList.add("dark");
   }
   changeIconSrc();
+  changeModeText();
 });
