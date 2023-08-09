@@ -7,3 +7,27 @@
     font-family: "Nunito Sans", sans-serif;
   }
 }
+
+
+.card {
+  @apply overflow-hidden bg-white rounded min-w-fit
+}
+.card h3 {
+  @apply font-extrabold text-5xl
+}
+
+.card > div {
+  @apply p-5 pb-10
+}
+
+.card h3 {
+  @apply py-3 text-xl font-extrabold
+}
+
+.card p {
+  @apply font-extrabold
+}
+
+.card p span {
+  @apply font-normal
+}

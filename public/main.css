@@ -582,6 +582,10 @@ html {
   display: flex;
 }
 
+.grid {
+  display: grid;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -598,6 +602,11 @@ html {
   width: 24rem;
 }
 
+.min-w-fit {
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+}
+
 .max-w-full {
   max-width: 100%;
 }
@@ -608,6 +617,10 @@ html {
 
 .cursor-text {
   cursor: text;
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -638,8 +651,16 @@ html {
   gap: 0.5rem;
 }
 
+.gap-20 {
+  gap: 5rem;
+}
+
 .gap-8 {
   gap: 2rem;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
 
 .rounded {
@@ -658,6 +679,14 @@ html {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.p-10 {
+  padding: 2.5rem;
+}
+
+.p-5 {
+  padding: 1.25rem;
 }
 
 .px-1 {
@@ -690,14 +719,28 @@ html {
   padding-bottom: 0.5rem;
 }
 
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
 .py-7 {
   padding-top: 1.75rem;
   padding-bottom: 1.75rem;
 }
 
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .text-xs {
@@ -707,6 +750,10 @@ html {
 
 .font-extrabold {
   font-weight: 800;
+}
+
+.font-normal {
+  font-weight: 400;
 }
 
 .font-semibold {
@@ -757,6 +804,42 @@ html {
 
 .duration-75 {
   transition-duration: 75ms;
+}
+
+.card {
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.card h3 {
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.card > div {
+  padding: 1.25rem;
+  padding-bottom: 2.5rem;
+}
+
+.card h3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 800;
+}
+
+.card p {
+  font-weight: 800;
+}
+
+.card p span {
+  font-weight: 400;
 }
 
 .focus-within\:outline:focus-within {
