@@ -8,26 +8,20 @@ function toggleDarkMode() {
     "mode",
     page.classList.contains("dark") ? "dark" : "light"
   );
-  changeIconSrc();
   changeModeText();
 }
 
-function changeIconSrc() {
-  const icon = darkModeBtn.querySelector("img");
-  if (page.classList.contains("dark")) {
-    icon.src = "./public/icons/sun.svg";
-  } else {
-    icon.src = "./public/icons/moon.svg";
-  }
-}
 
 function changeModeText() {
-  const modeText = darkModeBtn.querySelector("span")
-  if (page.classList.contains("dark")) {
-    modeText.textContent = "Light Mode"
-  } else {
-  modeText.textContent = "Dark Mode"
-  }
+  const modeText = darkModeBtn.querySelector("span");
+  const isDarkMode = page.classList.contains("dark");
+  modeText.textContent = isDarkMode ? "Light Mode" : "Dark Mode";
+  changeIconSrc(isDarkMode)
+}
+
+function changeIconSrc(isDarkMode) {
+  const icon = darkModeBtn.querySelector("img");
+  icon.src = isDarkMode ? "./public/icons/sun.svg" : "./public/icons/moon.svg";
 }
 
 darkModeBtn.addEventListener("click", toggleDarkMode);
@@ -37,6 +31,5 @@ window.addEventListener("load", () => {
   if (preferredMode === "dark") {
     page.classList.add("dark");
   }
-  changeIconSrc();
   changeModeText();
 });
