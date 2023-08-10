@@ -14,9 +14,9 @@
 }
 
 .card img {
-  @apply  mx-auto shadow-md
+  @apply  mx-auto h-2/5
   /* max-h-[170px] */
-}
+  }
 
 .card h3 {
   @apply font-extrabold text-5xl

@@ -49,6 +49,7 @@ function createCountryCard(countryObject) {
   const img = document.createElement("img");
   img.alt = flags.alt;
   img.src = flags.svg;
+  if (name.common === "Nepal") img.style.height = "40%"
 
   const h3 = document.createElement("h3");
   h3.textContent = name.common;
@@ -75,7 +76,9 @@ function createCountryCard(countryObject) {
 
   populationText.appendChild(populationSpan);
   regionText.appendChild(regionSpan);
+  if (name.common === "Palestine") capitalSpan.textContent = "Jerusalem"
   capitalText.appendChild(capitalSpan);
+
 
   infoDiv.appendChild(h3)
 
@@ -94,3 +97,21 @@ fetch("https://restcountries.com/v3.1/all")
   .then(data => data.forEach((countryObject) => createCountryCard(countryObject)))
   .catch(error => console.log(error))
 
+///////////////////////////////////////////
+
+// handle filter by region
+const regionFilter = document.getElementById("region-filter")
+
+regionFilter.addEventListener("input", () => {
+  cardsContainer.querySelectorAll(".card").forEach((e) => {
+    e.style.display = "none";
+  })
+
+  fetch("https://restcountries.com/v3.1/all")
+    .then(response => response.json())
+    .then(data => data.filter((countryObject) => countryObject.name.common !== "Israel"))
+    .then(data => data.filter((countryObject) => countryObject.region === regionFilter.value))
+    .then(data => data.forEach((countryObject) => createCountryCard(countryObject)))
+    .catch(error => console.log(error))
+
+})
