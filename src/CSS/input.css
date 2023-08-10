@@ -21,7 +21,6 @@
 
 .card img {
   @apply  mx-auto h-2/5
-  /* max-h-[170px] */
   }
 
 .card h3 {

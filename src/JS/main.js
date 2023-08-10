@@ -36,82 +36,60 @@ window.addEventListener("load", () => {
 
 ///////////////////////////////////////////
 const cardsContainer = document.getElementById("cards-container")
+const countryCardTemplate = document.querySelector("[data-country-template]")
 
 function createCountryCard(countryObject) {
+  const { name, flags, population, region, capital } = countryObject
 
-  const { flags, name, population, region, capital } = countryObject
+  //!!!!!!!!!!!!!!!!!!!!//
+  if (name.common === "Israel") return null
+  //!!!!!!!!!!!!!!!!!!!!//
 
-  const div = document.createElement("div");
-  div.classList.add("card");
-  div.title = name.common
+  const card = countryCardTemplate.content.cloneNode(true).children[0]
+  card.title = name.common;
 
+  const img = card.querySelector("img")
+  img.src = flags.svg
+  img.alt = flags.alt
 
-  const img = document.createElement("img");
-  img.alt = flags.alt;
-  img.src = flags.svg;
-  if (name.common === "Nepal") img.style.height = "40%"
+  // special styles for the only none rectangle flag in the world
+  if (name.common === "Nepal") img.style.height = "30%"
 
-  const h3 = document.createElement("h3");
+  const h3 = card.querySelector("div h3");
   h3.textContent = name.common;
 
-  const infoDiv = document.createElement("div");
+  card.querySelector("[data-population] span").textContent = population.toLocaleString();
+  card.querySelector("[data-region] span").textContent = region;
+  card.querySelector("[data-capital] span").textContent = name.common === "Palestine" ? "Jerusalem" : capital;
 
-  const populationText = document.createElement("p");
-  populationText.textContent = `Population: `;
+  cardsContainer.append(card)
 
-  const populationSpan = document.createElement("span");
-  populationSpan.textContent = population.toLocaleString();
-
-  const regionText = document.createElement("p");
-  regionText.textContent = `Region: `;
-
-  const regionSpan = document.createElement("span");
-  regionSpan.textContent = region;
-
-  const capitalText = document.createElement("p");
-  capitalText.textContent = `Capital: `;
-
-  const capitalSpan = document.createElement("span");
-  capitalSpan.textContent = capital;
-
-  populationText.appendChild(populationSpan);
-  regionText.appendChild(regionSpan);
-  if (name.common === "Palestine") capitalSpan.textContent = "Jerusalem"
-  capitalText.appendChild(capitalSpan);
-
-
-  infoDiv.appendChild(h3)
-
-  infoDiv.appendChild(populationText);
-  infoDiv.appendChild(regionText);
-  infoDiv.appendChild(capitalText);
-
-  div.appendChild(img);
-  div.appendChild(infoDiv);
-  cardsContainer.appendChild(div);
+  return { name: name.common, region: region, element: card }
 }
+
+let countries = []
 
 fetch("https://restcountries.com/v3.1/all")
   .then(response => response.json())
-  .then(data => data.filter((countryObject) => countryObject.name.common !== "Israel"))
-  .then(data => data.forEach((countryObject) => createCountryCard(countryObject)))
-  .catch(error => console.log(error))
-
+  .then(data => {
+    data.forEach((countryObject) => countries.push(createCountryCard(countryObject)))
+  })
 ///////////////////////////////////////////
-
 // handle filter by region
 const regionFilter = document.getElementById("region-filter")
 
-regionFilter.addEventListener("input", () => {
-  cardsContainer.querySelectorAll(".card").forEach((e) => {
-    e.style.display = "none";
+regionFilter.addEventListener("input", (e) => {
+  countries.forEach((country) => {
+    const value = e.target.value
+    if (value === "All") {
+      country.element.style.display = "block";
+      return
+    }
+    const isVisible = country.region === value
+    if (!isVisible) {
+      country.element.style.display = "none"
+    } else {
+      country.element.style.display = "block"
+    }
   })
-
-  fetch("https://restcountries.com/v3.1/all")
-    .then(response => response.json())
-    .then(data => data.filter((countryObject) => countryObject.name.common !== "Israel"))
-    .then(data => data.filter((countryObject) => countryObject.region === regionFilter.value))
-    .then(data => data.forEach((countryObject) => createCountryCard(countryObject)))
-    .catch(error => console.log(error))
-
 })

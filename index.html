@@ -44,22 +44,40 @@
       <div class="flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
         <div onclick="document.getElementById('search-input').focus()"
           class="flex items-center justify-start max-w-full gap-2 px-4 py-2 duration-75 bg-white rounded shadow-lg focus-within:outline dark:text-white dark:bg-blue cursor-text sm:py-4 w-96 sm:px-6">
-          <img src="./public/icons/IcBaselineSearch.svg" alt="Search lens icon" class="w-5 text-darkGray" />
+          <label for="search-input">
+            <img src="./public/icons/IcBaselineSearch.svg" alt="Search lens icon" class="w-5 text-darkGray" />
+          </label>
           <input id="search-input" type="text" placeholder="Search for a country..."
-            class="max-w-full font-semibold outline-none bg-inherit grow " />
+            class="max-w-full font-semibold outline-none bg-inherit grow" />
         </div>
-        <select name="region-filter" id="region-filter"
-          class="px-1 py-2 text-base font-semibold bg-white rounded shadow-none outline-none dark:bg-blue md:py-4 sm:px-2">
-          <option value="" class="font-semibold text-inherit">Filter by Region</option>
-          <option value="Africa" class="font-semibold text-inherit">Africa</option>
-          <option value="Americas" class="font-semibold text-inherit">Americas</option>
-          <option value="Asia" class="font-semibold text-inherit">Asia</option>
-          <option value="Europe" class="font-semibold text-inherit">Europe</option>
-          <option value="Oceania" class="font-semibold text-inherit">Oceania</option>
-        </select>
+        <div class="flex items-center gap-5">
+          <label for="region-filter">Filter by Region</label>
+          <select name="region-filter" id="region-filter"
+            class="px-1 py-2 text-base font-semibold bg-white rounded shadow-none outline-none dark:bg-blue md:py-4 sm:px-2">
+            <option value="All" class="font-semibold text-inherit">All</option>
+            <option value="Africa" class="font-semibold text-inherit">Africa</option>
+            <option value="Americas" class="font-semibold text-inherit">Americas</option>
+            <option value="Asia" class="font-semibold text-inherit">Asia</option>
+            <option value="Europe" class="font-semibold text-inherit">Europe</option>
+            <option value="Oceania" class="font-semibold text-inherit">Oceania</option>
+          </select>
+
+        </div>
       </div>
       <!-------->
-      <div id="cards-container" class="cards-container"></div>
+      <div id="cards-container" class="cards-container">
+      </div>
+      <template data-country-template>
+        <div class="card" title="">
+          <img src="" alt="">
+          <div>
+            <h3></h3>
+            <p data-population>Population: <span></span></p>
+            <p data-region>Region: <span></span></p>
+            <p data-capital>Capital: <span></span></p>
+          </div>
+        </div>
+      </template>
     </div>
   </main>
 </body>
