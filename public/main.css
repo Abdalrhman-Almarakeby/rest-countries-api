@@ -585,6 +585,10 @@ html {
   z-index: 50;
 }
 
+.ml-5 {
+  margin-left: 1.25rem;
+}
+
 .flex {
   display: flex;
 }
