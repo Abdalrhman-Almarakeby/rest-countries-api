@@ -42,7 +42,7 @@ function createCountryCard(countryObject) {
   const { name, flags, population, region, capital } = countryObject
 
   //!!!!!!!!!!!!!!!!!!!!//
-  if (name.common === "Israel") return null
+  if (name.common === "Israel") { return null }
   //!!!!!!!!!!!!!!!!!!!!//
 
   const card = countryCardTemplate.content.cloneNode(true).children[0]
