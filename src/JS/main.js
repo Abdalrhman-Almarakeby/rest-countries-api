@@ -38,7 +38,7 @@ const cardsContainer = document.getElementById("cards-container")
 const countryCardTemplate = document.querySelector("[data-country-template]")
 
 function createCountryCard(countryObject) {
-  const { name, flags, population, region, capitals } = countryObject
+  const { name, flags, population, region, capital } = countryObject
 
   // //!!!!!!!!!!!!!!!!!!!!//
   // if (name.common === "Israel") { return null }
@@ -59,11 +59,11 @@ function createCountryCard(countryObject) {
 
   card.querySelector("[data-population] span").textContent = population.toLocaleString();
   card.querySelector("[data-region] span").textContent = region;
-  card.querySelector("[data-capital] span").textContent = name.common === "Palestine" ? "Jerusalem" : capitals;
+  card.querySelector("[data-capital] span").textContent = name.common === "Palestine" ? "Jerusalem" : capital;
 
   cardsContainer.append(card)
 
-  return { name: name.common, region: region, capitals: capitals, element: card }
+  return { name: name.common, region: region, capitals: capital, element: card }
 }
 
 let countries = []
@@ -99,8 +99,15 @@ regionFilter.addEventListener("input", (e) => {
 const searchInput = document.getElementById("search-input")
 
 searchInput.addEventListener("input", (e) => {
+  const value = e.target.value.trim()
+
   countries.forEach((country) => {
-    const value = e.target.value.trim()
+    if (regionFilter.value !== "All") {
+      if (country.region !== regionFilter.value) {
+        country.element.style.display = "none"
+        return
+      }
+    }
 
     const isVisible = country.name.toLowerCase().includes(value.toLowerCase()) //|| country.capitals.forEach((capital) => { capital.includes(value) })
     if (!isVisible) {
@@ -110,3 +117,19 @@ searchInput.addEventListener("input", (e) => {
     }
   })
 })
+// 
+// regionFilter.addEventListener("click", () => {
+//   searchInput.textContent = ""
+//   searchInput.value = ""
+// 
+//   countries.forEach((country) => {
+//     country.element.style.display = "block"
+//   })
+// })
+// 
+// document.addEventListener("click", function (e) {
+//   if (!searchInput.contains(e.target)) {
+//     searchInput.textContent = ""
+//     searchInput.value = ""
+//   };
+// });
