@@ -661,10 +661,6 @@ html {
   border-radius: 0.25rem;
 }
 
-.bg-inherit {
-  background-color: inherit;
-}
-
 .bg-lightGray {
   --tw-bg-opacity: 1;
   background-color: hsl(0 0% 98% / var(--tw-bg-opacity));
@@ -673,6 +669,10 @@ html {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-inherit {
+  background-color: inherit;
 }
 
 .px-1 {
