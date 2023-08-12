@@ -593,6 +593,10 @@ html {
   display: flex;
 }
 
+.hidden {
+  display: none;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -661,6 +665,10 @@ html {
   border-radius: 0.25rem;
 }
 
+.bg-inherit {
+  background-color: inherit;
+}
+
 .bg-lightGray {
   --tw-bg-opacity: 1;
   background-color: hsl(0 0% 98% / var(--tw-bg-opacity));
@@ -669,10 +677,6 @@ html {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-inherit {
-  background-color: inherit;
 }
 
 .px-1 {
@@ -778,10 +782,6 @@ html {
   transition-property: outline;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-}
-
-.duration-75 {
-  transition-duration: 75ms;
 }
 
 .card {

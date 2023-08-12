@@ -26,6 +26,7 @@
 </head>
 
 <body>
+  <div class="hidden"></div>
   <header class="z-50 bg-white shadow-md text-veryDarkBlue dark:bg-blue dark:text-white">
     <div class="container flex items-center justify-between px-6 py-7">
       <p class="font-extrabold sm:text-sm md:text-lg lg:text-xl xl:text-2xl">
@@ -45,7 +46,8 @@
         <div onclick="document.getElementById('search-input').focus()"
           class="transition-[outline] bg-white dark:bg-blue flex items-center justify-start max-w-full gap-2 px-4 py-2 rounded shadow-lg focus-within:outline dark:text-white cursor-text sm:py-4 w-96 sm:px-6">
           <label for="search-input">
-            <img src="./public/icons/IcBaselineSearch.svg" alt="Search lens icon" class="w-5 text-darkGray " />
+            <img src="./public/icons/IcBaselineSearch.svg" alt="Search lens icon"
+              class="w-5 text-darkGray cursor-text" />
           </label>
           <input id="search-input" type="search" placeholder="Search for a country..."
             class="max-w-full font-semibold outline-none bg-inherit grow" />

@@ -78,58 +78,44 @@ fetch("https://restcountries.com/v3.1/all")
 ///////////////////////////////////////////
 // handle filter by region
 const regionFilter = document.getElementById("region-filter")
+const searchInput = document.getElementById("search-input")
 
 regionFilter.addEventListener("input", (e) => {
   countries.forEach((country) => {
     const value = e.target.value
     if (value === "All") {
-      country.element.style.display = "block";
+      country.element.classList.remove("hidden")
       return
     }
     const isVisible = country.region === value
     if (!isVisible) {
-      country.element.style.display = "none"
+      country.element.classList.add("hidden")
     } else {
-      country.element.style.display = "block"
+      country.element.classList.remove("hidden")
     }
   })
+
+  searchInput.textContent = ""
+  searchInput.value = ""
 })
 
 // Handel search input 
-const searchInput = document.getElementById("search-input")
-
 searchInput.addEventListener("input", (e) => {
   const value = e.target.value.trim()
 
   countries.forEach((country) => {
     if (regionFilter.value !== "All") {
       if (country.region !== regionFilter.value) {
-        country.element.style.display = "none"
+        country.element.classList.add("hidden")
         return
       }
     }
 
     const isVisible = country.name.toLowerCase().includes(value.toLowerCase()) //|| country.capitals.forEach((capital) => { capital.includes(value) })
     if (!isVisible) {
-      country.element.style.display = "none"
+      country.element.classList.add("hidden")
     } else {
-      country.element.style.display = "block"
+      country.element.classList.remove("hidden")
     }
   })
 })
-// 
-// regionFilter.addEventListener("click", () => {
-//   searchInput.textContent = ""
-//   searchInput.value = ""
-// 
-//   countries.forEach((country) => {
-//     country.element.style.display = "block"
-//   })
-// })
-// 
-// document.addEventListener("click", function (e) {
-//   if (!searchInput.contains(e.target)) {
-//     searchInput.textContent = ""
-//     searchInput.value = ""
-//   };
-// });
