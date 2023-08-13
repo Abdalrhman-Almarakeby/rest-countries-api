@@ -34,88 +34,103 @@ window.addEventListener("load", () => {
 });
 
 ///////////////////////////////////////////
-const cardsContainer = document.getElementById("cards-container")
-const countryCardTemplate = document.querySelector("[data-country-template]")
+const cardsContainer = document.getElementById("cards-container");
+const countryCardTemplate = document.querySelector("[data-country-template]");
 
 function createCountryCard(countryObject) {
-  const { name, flags, population, region, capital } = countryObject
+  const { name, flags, population, region, capital } = countryObject;
 
   // //!!!!!!!!!!!!!!!!!!!!//
   // if (name.common === "Israel") { return null }
   // //!!!!!!!!!!!!!!!!!!!!//
 
-  const card = countryCardTemplate.content.cloneNode(true).children[0]
+  const card = countryCardTemplate.content.cloneNode(true).children[0];
   card.title = name.common;
 
-  const img = card.querySelector("img")
-  img.src = flags.svg
-  img.alt = flags.alt
+  const img = card.querySelector("img");
+  img.src = flags.svg;
+  img.alt = flags.alt;
 
   // special styles for the only none rectangle flag in the world
-  if (name.common === "Nepal") img.style.height = "30%"
+  if (name.common === "Nepal") img.style.height = "30%";
 
   const h3 = card.querySelector("div h3");
   h3.textContent = name.common;
 
   card.querySelector("[data-population] span").textContent = population.toLocaleString();
   card.querySelector("[data-region] span").textContent = region;
+  //!!!!!!!!!!!!!!!!!!!!//
   card.querySelector("[data-capital] span").textContent = name.common === "Palestine" ? "Jerusalem" : capital;
+  //!!!!!!!!!!!!!!!!!!!!//
 
-  cardsContainer.append(card)
+  cardsContainer.append(card);
 
   return { name: name.common, region: region, capitals: capital, element: card }
 }
 
-let countries = []
+let countries = [];
 
-fetch("https://restcountries.com/v3.1/all")
+
+fetch("https://restcountries .com/v3. 1/all")
   .then(response => response.json())
   .then(data => {
-    data.forEach((countryObject) => {
-      countries.push(createCountryCard(countryObject));
+    data.forEach(countryObject => {
+      countries.push(createCountryCard(countryObject))
     })
   })
-///////////////////////////////////////////
-// handle filter by region
-const regionFilter = document.getElementById("region-filter")
-const searchInput = document.getElementById("search-input")
-
-regionFilter.addEventListener("input", (e) => {
-  countries.forEach((country) => {
-    const value = e.target.value
-    if (value === "All") {
-      country.element.classList.remove("hidden")
-      return
-    }
-    const isVisible = country.region === value
-    if (!isVisible) {
-      country.element.classList.add("hidden")
-    } else {
-      country.element.classList.remove("hidden")
+  .catch(error => {
+    console.log(error);
+    document.querySelector(".error").style.setProperty("display", "flex");
+  })
+  .finally(() => {
+    if (!document.querySelector(".error").style.display === "flex") {
+      document.getElementById("search-bar").style.setProperty("display", "flex");
     }
   })
 
-  searchInput.textContent = ""
-  searchInput.value = ""
+
+
+///////////////////////////////////////////
+// handle filter by region
+const regionFilter = document.getElementById("region-filter");
+const searchInput = document.getElementById("search-input");
+
+regionFilter.addEventListener("input", e => {
+  countries.forEach(country => {
+    const value = e.target.value;
+    if (value === "All") {
+      country.element.classList.remove("hidden");
+      return;
+    }
+    const isVisible = country.region === value;
+    country.element.classList.toggle("hidden", !isVisible);
+  })
+
+  searchInput.textContent = "";
+  searchInput.value = "";
 })
 
 // Handel search input 
-searchInput.addEventListener("input", (e) => {
-  const value = e.target.value.trim()
+searchInput.addEventListener("input", e => {
+  const value = e.target.value.trim();
 
-  countries.forEach((country) => {
+  countries.forEach(country => {
     if (regionFilter.value !== "All") {
       if (country.region !== regionFilter.value) {
-        country.element.classList.add("hidden")
-        return
+        country.element.classList.add("hidden");
+        return;
       }
     }
+    const isVisible = country.name.toLowerCase().includes(value.toLowerCase()); //|| country.capitals.forEach(capital => { capital.includes(value) })
 
-    const isVisible = country.name.toLowerCase().includes(value.toLowerCase()) //|| country.capitals.forEach((capital) => { capital.includes(value) })
-    if (!isVisible) {
-      country.element.classList.add("hidden")
-    } else {
-      country.element.classList.remove("hidden")
-    }
+    country.element.classList.toggle("hidden", !isVisible);
   })
 })
+
+// Focus on the search input on click ctr + k
+window.addEventListener('keydown', (event) => {
+  if (event.code === 'KeyK' && event.ctrlKey) {
+    event.preventDefault()
+    searchInput.focus()
+  }
+});

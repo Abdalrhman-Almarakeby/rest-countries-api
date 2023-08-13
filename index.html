@@ -41,8 +41,14 @@
   <!---------------------------->
   <main class="min-h-screen px-5 py-10 bg-lightGray dark:bg-darkBlue dark:text-white text-darkBlue">
     <div class="container">
+      <!-- Error message -->
+      <div class="error">
+        <h1>Error 404</h1>
+        <p>Check your internet connection and try agin</p>
+      </div>
+      <!-- Error message -->
       <!-------->
-      <div class="flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
+      <div id="search-bar" class="hidden flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
         <div onclick="document.getElementById('search-input').focus()"
           class="transition-[outline] bg-white dark:bg-blue flex items-center justify-start max-w-full gap-2 px-4 py-2 rounded shadow-lg focus-within:outline dark:text-white cursor-text sm:py-4 w-96 sm:px-6">
           <label for="search-input">
@@ -67,8 +73,7 @@
         </div>
       </div>
       <!-------->
-      <div id="cards-container" class="cards-container">
-      </div>
+      <div id="cards-container" class="cards-container"></div>
       <template data-country-template>
         <div class="card" title="">
           <img src="" alt="">

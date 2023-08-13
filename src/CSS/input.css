@@ -42,3 +42,15 @@
 .card p span {
   @apply font-normal
 }
+
+.error {
+  @apply h-80 hidden items-center justify-center flex-col gap-8 
+}
+
+.error h1 {
+  @apply font-extrabold text-5xl text-center
+}
+
+.error p {
+  @apply font-semibold text-2xl text-center
+}
