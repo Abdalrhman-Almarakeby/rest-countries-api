@@ -40,9 +40,9 @@ const countryCardTemplate = document.querySelector("[data-country-template]");
 function createCountryCard(countryObject) {
   const { name, flags, population, region, capital } = countryObject;
 
-  // //!!!!!!!!!!!!!!!!!!!!//
-  // if (name.common === "Israel") { return null }
-  // //!!!!!!!!!!!!!!!!!!!!//
+  //!!!!!!!!!!!!!!!!!!!!//
+  if (name.common === "Israel") return null
+  //!!!!!!!!!!!!!!!!!!!!//
 
   const card = countryCardTemplate.content.cloneNode(true).children[0];
   card.title = name.common;
@@ -70,25 +70,18 @@ function createCountryCard(countryObject) {
 
 let countries = [];
 
-
-fetch("https://restcountries .com/v3. 1/all")
+fetch("https://restcountries.com/v3.1/all")
   .then(response => response.json())
   .then(data => {
     data.forEach(countryObject => {
-      countries.push(createCountryCard(countryObject))
-    })
+      countries.push(createCountryCard(countryObject));
+    });
+    document.getElementById("search-bar").style.display = "flex";
   })
   .catch(error => {
     console.log(error);
-    document.querySelector(".error").style.setProperty("display", "flex");
-  })
-  .finally(() => {
-    if (!document.querySelector(".error").style.display === "flex") {
-      document.getElementById("search-bar").style.setProperty("display", "flex");
-    }
-  })
-
-
+    document.querySelector(".error").style.display = "flex";
+  });
 
 ///////////////////////////////////////////
 // handle filter by region
@@ -96,8 +89,11 @@ const regionFilter = document.getElementById("region-filter");
 const searchInput = document.getElementById("search-input");
 
 regionFilter.addEventListener("input", e => {
+  searchInput.textContent = "";
+  searchInput.value = "";
   countries.forEach(country => {
     const value = e.target.value;
+
     if (value === "All") {
       country.element.classList.remove("hidden");
       return;
@@ -105,9 +101,6 @@ regionFilter.addEventListener("input", e => {
     const isVisible = country.region === value;
     country.element.classList.toggle("hidden", !isVisible);
   })
-
-  searchInput.textContent = "";
-  searchInput.value = "";
 })
 
 // Handel search input 
@@ -115,13 +108,15 @@ searchInput.addEventListener("input", e => {
   const value = e.target.value.trim();
 
   countries.forEach(country => {
+    if (country === null) return
+
     if (regionFilter.value !== "All") {
       if (country.region !== regionFilter.value) {
         country.element.classList.add("hidden");
         return;
       }
     }
-    const isVisible = country.name.toLowerCase().includes(value.toLowerCase()); //|| country.capitals.forEach(capital => { capital.includes(value) })
+    const isVisible = country.name.toLowerCase().includes(value.toLowerCase());
 
     country.element.classList.toggle("hidden", !isVisible);
   })
